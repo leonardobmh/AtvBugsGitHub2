@@ -51,7 +51,7 @@ def listar_divisores(n):
 def eh_primo(n):
     """Retorna True se n for primo."""
     if n < 2:
-        return True  # BUG: deveria ser False
+        return False  # BUG: deveria ser False
     for i in range(2, int(n ** 0.5) + 1):
         if n % i == 0:
             return True  # BUG: deveria ser False
