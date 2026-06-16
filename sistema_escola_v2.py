@@ -25,43 +25,43 @@ def divisivel_por(numero, divisor):
     """Retorna True se 'numero' for divisível por 'divisor'."""
     if divisor == 0:
         return False
-    return numero % divisor == 0  # BUG: deveria ser %
+    return numero % divisor == 0
+
 
 # Função 2 - Calcula a potência sem usar o operador **
-# 🐛 BUG: range errado, faz uma multiplicação a menos
 def potencia(base, expoente):
     """Calcula base elevado a expoente usando multiplicação."""
     resultado = 1
-    for _ in range(expoente):  # BUG: deveria ser range(expoente)
+    for _ in range(expoente):
         resultado *= base
     return resultado
 
+
 # Função 3 - Retorna a lista de divisores de um número
-# 🐛 BUG: range não inclui o próprio número
 def listar_divisores(n):
     """Retorna uma lista com todos os divisores de n."""
     divisores = []
-    for i in range(1, n + 1):  # BUG: deveria ser range(1, n + 1)
+    for i in range(1, n + 1):
         if n % i == 0:
             divisores.append(i)
     return divisores
 
+
 # Função 4 - Verifica se um número é primo
-# 🐛 BUG: retornos invertidos
 def eh_primo(n):
     """Retorna True se n for primo."""
     if n < 2:
-        return False  # BUG: deveria ser False
+        return False
     for i in range(2, int(n ** 0.5) + 1):
         if n % i == 0:
-            return True  # BUG: deveria ser False
-    return False  # BUG: deveria ser True
+            return False
+    return True
+
 
 # Função 5 - Calcula o fatorial de forma recursiva
-# 🐛 BUG: caso base errado, causa recursão infinita ou resultado errado
 def fatorial(n):
     """Retorna o fatorial de n usando recursão."""
-    if n <= 1:  # BUG: deveria ser n == 0 ou n <= 1
+    if n <= 1:
         return 1
     return n * fatorial(n - 1)
 
@@ -73,35 +73,41 @@ def fatorial(n):
 # Função 6 - Conta vogais em um texto
 def contar_vogais(texto):
     """Conta quantas vogais existem no texto."""
-    vogais = "AEIOU"      contador = 0
-    for letra in texto:
+    vogais = "AEIOU"
+    contador = 0
+    for letra in texto.upper():
         if letra in vogais:
             contador += 1
     return contador
 
+
 # Função 7 - Capitaliza a primeira letra de cada palavra
 def formatar_nome_completo(nome):
     """Retorna o nome com a primeira letra de cada palavra em maiúsculo."""
-    return nome.title()  
+    return nome.title()
+
+
 # Função 8 - Remove espaços duplicados de um texto
 def remover_espacos_duplos(texto):
     """Remove espaços extras, deixando apenas um espaço entre palavras."""
     palavras = texto.split()
     return " ".join(palavras)
- 
+
 
 # Função 9 - Censura palavras proibidas substituindo por asteriscos
 def censurar_palavra(texto, palavra_proibida):
     """Substitui a palavra proibida por asteriscos do mesmo tamanho."""
     asteriscos = "*" * len(palavra_proibida)
-    return texto.replace(palavra_proibida, asteriscos)  
+    return texto.replace(palavra_proibida, asteriscos)
+
 
 # Função 10 - Verifica se dois textos são anagramas
 def sao_anagramas(texto1, texto2):
     """Retorna True se os dois textos forem anagramas um do outro."""
     t1 = texto1.lower().replace(" ", "")
     t2 = texto2.lower().replace(" ", "")
-    return sorted(t1) == sorted(t2) 
+    return sorted(t1) == sorted(t2)
+
 
 # ------------------------------------------------------------
 # BLOCO 3 - LISTAS E ORDENAÇÃO
@@ -113,10 +119,11 @@ def remover_duplicatas(lista):
     vistos = []
     resultado = []
     for item in lista:
-        if item not in vistos:  
+        if item not in vistos:
             vistos.append(item)
             resultado.append(item)
     return resultado
+
 
 # Função 12 - Intercala dois listas em uma só
 def intercalar_listas(lista1, lista2):
@@ -129,12 +136,15 @@ def intercalar_listas(lista1, lista2):
     resultado.extend(lista1[tamanho:])
     resultado.extend(lista2[tamanho:])
 
+    return resultado
+
+
 # Função 13 - Implementa busca binária
 def busca_binaria(lista_ordenada, alvo):
     """Busca um valor em lista ordenada. Retorna o índice ou -1."""
     inicio = 0
     fim = len(lista_ordenada) - 1
-    while inicio <= fim:   
+    while inicio <= fim:
         meio = (inicio + fim) // 2
         if lista_ordenada[meio] == alvo:
             return meio
@@ -144,18 +154,22 @@ def busca_binaria(lista_ordenada, alvo):
             fim = meio - 1
     return -1
 
+
 # Função 14 - Retorna os N maiores elementos de uma lista
 def n_maiores(lista, n):
     """Retorna os N maiores elementos em ordem decrescente."""
     ordenada = sorted(lista, reverse=True)
-return ordenada[:n]
+
+
+    return ordenada[:n]
+
 
 # Função 15 - Achata uma lista de listas em uma lista simples
 def achatar_lista(lista_de_listas):
     """Transforma [[1,2],[3,4]] em [1,2,3,4]."""
     resultado = []
     for sublista in lista_de_listas:
-        resultado.extend(sublista)  
+        resultado.extend(sublista)
     return resultado
 
 
@@ -169,15 +183,18 @@ def inverter_dicionario(dicionario):
     novo = {}
     for chave, valor in dicionario.items():
         novo[valor] = chave
-  
+
     return novo
+
 
 # Função 17 - Mescla dois dicionários (o segundo sobrescreve o primeiro)
 def mesclar_dicionarios(dict1, dict2):
     """Mescla dois dicionários. Valores do dict2 têm prioridade."""
+    resultado = {}
     resultado.update(dict1)
-    resultado.update(dict2)     
+    resultado.update(dict2)
     return resultado
+
 
 # Função 18 - Conta a frequência de cada item em uma lista
 def contar_frequencia(lista):
@@ -190,10 +207,12 @@ def contar_frequencia(lista):
             frequencia[item] = 1
     return frequencia
 
+
 # Função 19 - Filtra dicionário mantendo apenas chaves de uma lista
 def filtrar_chaves(dicionario, chaves_permitidas):
     """Retorna um novo dicionário apenas com as chaves permitidas."""
     return {k: v for k, v in dicionario.items() if k in chaves_permitidas}
+
 
 # Função 20 - Agrupa alunos por turma em um dicionário
 def agrupar_por_turma(alunos):
@@ -206,7 +225,7 @@ def agrupar_por_turma(alunos):
         turma = aluno["turma"]
         if turma not in grupos:
             grupos[turma] = []
-        grupos[turma].append = [aluno["nome"]]  
+        grupos[turma].append(aluno["nome"])
     return grupos
 
 
@@ -219,9 +238,10 @@ def estatisticas_notas(notas):
     """Retorna um dicionário com média, maior e menor nota."""
     return {
         "media": sum(notas) / len(notas),
-        "maior": max(notas),  
+        "maior": max(notas),
         "menor": min(notas),
     }
+
 
 # Função 22 - Classifica aluno com base em média e frequência
 def classificar_aluno(media, frequencia):
@@ -231,12 +251,13 @@ def classificar_aluno(media, frequencia):
     - 'Reprovado por falta': frequência < 75
     - 'Reprovado por nota': média < 6
     """
-    if media >= 6 and frequencia >= 75:  
+    if media >= 6 and frequencia >= 75:
         return "Aprovado"
     elif frequencia < 75:
         return "Reprovado por falta"
     else:
         return "Reprovado por nota"
+
 
 # Função 23 - Calcula desconto progressivo por quantidade
 def calcular_desconto(preco, quantidade):
@@ -247,12 +268,13 @@ def calcular_desconto(preco, quantidade):
     - 10 ou mais    : 20% de desconto
     """
     if quantidade >= 10:
-        desconto = 0.20   
+        desconto = 0.20
     elif quantidade >= 5:
         desconto = 0.10
     else:
         desconto = 0.05
     return preco * (1 - desconto)
+
 
 # Função 24 - Fibonacci com recursão e memoização simples
 def fibonacci(n, memo={}):
@@ -266,6 +288,7 @@ def fibonacci(n, memo={}):
     memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo)
     return memo[n]
 
+
 # Função 25 - Valida um CPF (formato básico: 000.000.000-00)
 def validar_cpf_formato(cpf):
     """
@@ -273,7 +296,7 @@ def validar_cpf_formato(cpf):
     Retorna True se válido, False se inválido.
     """
     cpf = cpf.strip()
-    if len(cpf) != 11:
+    if len(cpf) != 14:
         return False
     for i, char in enumerate(cpf):
         if i in [3, 7]:
@@ -286,6 +309,7 @@ def validar_cpf_formato(cpf):
             if not char.isdigit():
                 return False
     return True
+
 
 # ------------------------------------------------------------
 # BLOCO 6 - MANIPULAÇÃO DE DADOS ESCOLARES
@@ -304,17 +328,19 @@ def gerar_boletim(nome, notas_bimestres):
         boletim["situacao"] = "Aprovado"
     else:
         boletim["situacao"] = "Recuperação"
-        nota_necessaria = (6*2) - media  
+        nota_necessaria = (6 * 2) - media
         boletim["nota_recuperacao"] = round(nota_necessaria, 2)
 
     return boletim
+
 
 # Função 27 - Calcula frequência percentual do aluno
 def calcular_frequencia(aulas_dadas, faltas):
     """Retorna o percentual de frequência do aluno."""
     presencas = aulas_dadas - faltas
-    percentual = (presencas / aulas_dadas) * 100   
+    percentual = (presencas / aulas_dadas) * 100
     return round(percentual, 2)
+
 
 # Função 28 - Retorna o ranking de alunos por nota (maior primeiro)
 def ranking_turma(alunos):
@@ -323,6 +349,7 @@ def ranking_turma(alunos):
     Retorna lista ordenada do maior para o menor.
     """
     return sorted(alunos, key=lambda a: a["nota"], reverse=True)
+
 
 # Função 29 - Calcula a média ponderada com pesos por bimestre
 def media_ponderada(notas, pesos):
@@ -336,6 +363,7 @@ def media_ponderada(notas, pesos):
     soma_pesos = sum(pesos)
     return round(soma_ponderada / soma_pesos, 2)
 
+
 # Função 30 - Gera relatório final consolidado da turma
 def relatorio_final(turma):
     """
@@ -343,8 +371,8 @@ def relatorio_final(turma):
     Exibe e retorna um dicionário com resumo da turma.
     """
     total = len(turma)
-    aprovados   = [a for a in turma if a["nota"] >= 6]
-    reprovados  = [a for a in turma if a["nota"] < 6]
+    aprovados = [a for a in turma if a["nota"] >= 6]
+    reprovados = [a for a in turma if a["nota"] < 6]
     media_turma = sum(a["nota"] for a in turma) / total
 
     percentual = len(aprovados) / total * 100
@@ -373,36 +401,35 @@ def relatorio_final(turma):
 # ============================================================
 
 if __name__ == "__main__":
-
     print("\n--- BLOCO 1: Matemática e Lógica ---")
-    print("12 divisível por 4:", divisivel_por(12, 4))         # Esperado: True
-    print("2 elevado a 4:", potencia(2, 4))                     # Esperado: 16
-    print("Divisores de 12:", listar_divisores(12))             # Esperado: [1,2,3,4,6,12]
-    print("7 é primo:", eh_primo(7))                            # Esperado: True
-    print("Fatorial de 0:", fatorial(0))                        # Esperado: 1
+    print("12 divisível por 4:", divisivel_por(12, 4))  # Esperado: True
+    print("2 elevado a 4:", potencia(2, 4))  # Esperado: 16
+    print("Divisores de 12:", listar_divisores(12))  # Esperado: [1,2,3,4,6,12]
+    print("7 é primo:", eh_primo(7))  # Esperado: True
+    print("Fatorial de 0:", fatorial(0))  # Esperado: 1
 
     print("\n--- BLOCO 2: Strings ---")
-    print("Vogais em 'SENAI':", contar_vogais("SENAI"))         # Esperado: 3
+    print("Vogais em 'SENAI':", contar_vogais("SENAI"))  # Esperado: 3
     print("Formatar nome:", formatar_nome_completo("ana lima"))  # Esperado: Ana Lima
     print("Remover espaços:", remover_espacos_duplos("oi  tudo  bem"))  # Esperado: oi tudo bem
-    print("Censurar:", censurar_palavra("eu odeio spam", "spam"))       # Esperado: eu odeio ****
-    print("Anagrama 'amor'/'roma':", sao_anagramas("amor", "roma"))     # Esperado: True
+    print("Censurar:", censurar_palavra("eu odeio spam", "spam"))  # Esperado: eu odeio ****
+    print("Anagrama 'amor'/'roma':", sao_anagramas("amor", "roma"))  # Esperado: True
 
     print("\n--- BLOCO 3: Listas ---")
-    print("Sem duplicatas:", remover_duplicatas([1, 2, 2, 3, 1]))       # Esperado: [1,2,3]
-    print("Intercalar:", intercalar_listas([1, 2, 3], [4, 5]))          # Esperado: [1,4,2,5,3]
-    print("Busca binária por 7:", busca_binaria([1,3,5,7,9], 7))        # Esperado: 3
-    print("3 maiores:", n_maiores([4, 1, 9, 3, 7], 3))                  # Esperado: [9,7,4]
-    print("Achatar:", achatar_lista([[1, 2], [3, 4]]))                   # Esperado: [1,2,3,4]
+    print("Sem duplicatas:", remover_duplicatas([1, 2, 2, 3, 1]))  # Esperado: [1,2,3]
+    print("Intercalar:", intercalar_listas([1, 2, 3], [4, 5]))  # Esperado: [1,4,2,5,3]
+    print("Busca binária por 7:", busca_binaria([1, 3, 5, 7, 9], 7))  # Esperado: 3
+    print("3 maiores:", n_maiores([4, 1, 9, 3, 7], 3))  # Esperado: [9,7,4]
+    print("Achatar:", achatar_lista([[1, 2], [3, 4]]))  # Esperado: [1,2,3,4]
 
     print("\n--- BLOCO 4: Dicionários ---")
-    print("Inverter dict:", inverter_dicionario({"a": 1, "b": 2}))      # Esperado: {1:'a', 2:'b'}
-    print("Mesclar:", mesclar_dicionarios({"a":1}, {"a":99,"b":2}))     # Esperado: {'a':99,'b':2}
-    print("Frequência:", contar_frequencia(["a","b","a","c","b","a"]))  # Esperado: {a:3,b:2,c:1}
-    print("Filtrar chaves:", filtrar_chaves({"a":1,"b":2,"c":3}, ["a","c"]))  # Esperado: {a:1,c:3}
+    print("Inverter dict:", inverter_dicionario({"a": 1, "b": 2}))  # Esperado: {1:'a', 2:'b'}
+    print("Mesclar:", mesclar_dicionarios({"a": 1}, {"a": 99, "b": 2}))  # Esperado: {'a':99,'b':2}
+    print("Frequência:", contar_frequencia(["a", "b", "a", "c", "b", "a"]))  # Esperado: {a:3,b:2,c:1}
+    print("Filtrar chaves:", filtrar_chaves({"a": 1, "b": 2, "c": 3}, ["a", "c"]))  # Esperado: {a:1,c:3}
 
     alunos_turma = [
-        {"nome": "Ana",   "turma": "DS23"},
+        {"nome": "Ana", "turma": "DS23"},
         {"nome": "Bruno", "turma": "RD23"},
         {"nome": "Carla", "turma": "DS23"},
     ]
@@ -412,10 +439,10 @@ if __name__ == "__main__":
     print("\n--- BLOCO 5: Lógica Composta ---")
     print("Estatísticas [5,7,9,4]:", estatisticas_notas([5, 7, 9, 4]))
     # Esperado: {'media':6.25, 'maior':9, 'menor':4}
-    print("Classificar (7, 80%):", classificar_aluno(7, 80))     # Esperado: Aprovado
-    print("Classificar (7, 60%):", classificar_aluno(7, 60))     # Esperado: Reprovado por falta
-    print("Desconto (100, 10un):", calcular_desconto(100, 10))   # Esperado: 80.0
-    print("Fibonacci(7):", fibonacci(7))                          # Esperado: 13
+    print("Classificar (7, 80%):", classificar_aluno(7, 80))  # Esperado: Aprovado
+    print("Classificar (7, 60%):", classificar_aluno(7, 60))  # Esperado: Reprovado por falta
+    print("Desconto (100, 10un):", calcular_desconto(100, 10))  # Esperado: 80.0
+    print("Fibonacci(7):", fibonacci(7))  # Esperado: 13
     print("CPF válido:", validar_cpf_formato("123.456.789-09"))  # Esperado: True
 
     print("\n--- BLOCO 6: Dados Escolares ---")
@@ -424,7 +451,7 @@ if __name__ == "__main__":
     print("Frequência (40 aulas, 8 faltas):", calcular_frequencia(40, 8))  # Esperado: 80.0
 
     ranking = ranking_turma([
-        {"nome": "Zé",  "nota": 5},
+        {"nome": "Zé", "nota": 5},
         {"nome": "Ana", "nota": 9},
         {"nome": "Leo", "nota": 7},
     ])
@@ -434,12 +461,12 @@ if __name__ == "__main__":
 
     print()
     turma_final = [
-        {"nome": "Ana",     "nota": 8.0},
-        {"nome": "Bruno",   "nota": 4.5},
-        {"nome": "Carla",   "nota": 7.0},
-        {"nome": "Diego",   "nota": 5.9},
+        {"nome": "Ana", "nota": 8.0},
+        {"nome": "Bruno", "nota": 4.5},
+        {"nome": "Carla", "nota": 7.0},
+        {"nome": "Diego", "nota": 5.9},
         {"nome": "Eduarda", "nota": 9.5},
-        {"nome": "Felipe",  "nota": 6.0},
+        {"nome": "Felipe", "nota": 6.0},
     ]
     relatorio_final(turma_final)
     # Esperado: 4 aprovados, taxa 66.7%
